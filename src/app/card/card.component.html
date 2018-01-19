@@ -1,0 +1,37 @@
+<div class="card cardTemplate weather-forecast"  >
+  <div class="city-key" >{{forecast.key}}</div>
+  <div class="card-last-updated" ></div>
+  <div class="location">{{forecast.label}}</div>
+  <div class="date">{{forecast.channel.item.condition.date}}</div>
+  <div class="description">{{forecast.channel.item.condition.text}}</div>
+  <div class="current">
+    <div class="visual">
+      <div class="icon" [ngClass]="getIconClass(forecast.channel.item.condition.code)"></div>
+      <div class="temperature">
+        <span class="value">{{forecast.channel.item.condition.temp}}</span><span class="scale">°F</span>
+      </div>
+    </div>
+    <div class="description">
+      <div class="humidity">{{forecast.channel.atmosphere.humidity}}%</div>
+      <div class="wind">
+        <span class="value">{{forecast.channel.wind.speed}}</span>
+        <span class="scale">mph</span>
+        <span class="direction">{{forecast.channel.wind.direction}}</span>°
+      </div>
+      <div class="sunrise">{{forecast.channel.astronomy.sunrise}}</div>
+      <div class="sunset">{{forecast.channel.astronomy.sunset}}</div>
+    </div>
+  </div>
+  <div class="future">
+    <div class="oneday" *ngFor="let dayForecast of forecast.channel.item.forecast; let i = index">
+      <div class="date">{{getDayOfWeek(forecast.channel.item.condition.date, i)}}</div>
+      <div class="icon" [ngClass]="getIconClass(dayForecast.code)"></div>
+      <div class="temp-high">
+        <span class="value">{{dayForecast.high}}</span>°
+      </div>
+      <div class="temp-low">
+        <span class="value">{{dayForecast.low}}</span>°
+      </div>
+    </div>
+  </div>
+</div>
