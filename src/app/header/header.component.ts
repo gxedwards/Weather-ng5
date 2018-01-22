@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DialogComponent} from '../dialog/dialog.component';
+import {AppService} from '../app.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   dialogRef: MatDialogRef<DialogComponent>;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private appService: AppService) {}
 
   ngOnInit() {
   }
@@ -22,10 +23,18 @@ export class HeaderComponent implements OnInit {
       data: {  }
     });
 
+   const sub = this.dialogRef.componentInstance.onAdd.subscribe((data) => {
+     this.appService.addForecast(data);
+   } );
+
     this.dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
+      // unsubscribe now we are closing the dialog
+      sub.unsubscribe();
     });
+  }
+
+  refresh(): void {
+
   }
 
 }

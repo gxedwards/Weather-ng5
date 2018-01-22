@@ -1,6 +1,6 @@
 import { Forecast } from './forecast';
 
-export const DEFAULT_FORECAST: Forecast[] = [
+export const DEFAULT_FORECAST: Forecast =
   {
     key: '2459115',
     label: 'New York, NY',
@@ -36,4 +36,4 @@ export const DEFAULT_FORECAST: Forecast[] = [
       }
     }
   }
-];
+;

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { ForecastService } from './forecast.service';
+import {AppService} from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +10,20 @@ import { ForecastService } from './forecast.service';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  // forecasts
-  selectedCities = [];
+  // cities for which we want forecast information
+  get selectedCities() { return  this.appService.selectedCities};
 
-  constructor(private forecastService: ForecastService) { }
+  constructor(private forecastService: ForecastService, private appService: AppService) { }
 
   ngOnInit() {
-    // grab the forecasts and push onto the selected cities.
-    this.forecastService.getForecast().subscribe( forecasts => {
-      let a = this.selectedCities;
-      forecasts.forEach( function(city) {
-        a.push(city);
-      });
-    });
+
+
+    this.addForecast('2459115');
+
+  }
+
+  addForecast(key: string) {
+    this.appService.addForecast(key);
   }
 
 }

@@ -1,13 +1,6 @@
-<header class="header">
-  <h1 class="header__title">Weather PWA</h1>
-  <button id="butRefresh" class="headerButton" aria-label="Refresh"></button>
-  <button id="butAdd" class="headerButton" aria-label="Add"></button>
-
-
-</header>
 
 <mat-toolbar color="primary">
   <span>Weather App</span>
-  <button mat-icon-button (click)="openDialog()"><mat-icon>Add</mat-icon></button>
-
+  <button mat-icon-button (click)="refresh()" ><mat-icon>refresh</mat-icon></button>
+  <button mat-icon-button (click)="openDialog()"><i class="material-icons" >add</i></button>
 </mat-toolbar>
