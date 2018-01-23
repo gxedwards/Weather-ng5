@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     });
 
    const sub = this.dialogRef.componentInstance.onAdd.subscribe((data) => {
-     this.appService.addForecast(data);
+     this.appService.addCard(data);
    } );
 
     this.dialogRef.afterClosed().subscribe(result => {
@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   refresh(): void {
-
+    this.appService.updateCards();
   }
 
 }

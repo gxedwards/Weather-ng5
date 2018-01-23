@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Forecast} from '../forecast';
+import {AppService} from "../app.service";
 
 @Component({
   selector: 'app-card',
@@ -9,7 +10,8 @@ import {Forecast} from '../forecast';
 export class CardComponent implements OnInit {
   daysOfWeek: string[]  = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   @Input() forecast: Forecast;
-  constructor() { }
+
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
   }
@@ -84,4 +86,8 @@ export class CardComponent implements OnInit {
     }
   };
 
+
+  deleteCard(key: string) {
+    this.appService.deleteCard(key);
+  }
 }

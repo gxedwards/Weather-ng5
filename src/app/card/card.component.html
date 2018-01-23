@@ -1,9 +1,16 @@
 <div class="card cardTemplate weather-forecast"  >
-  <div class="city-key" >{{forecast.key}}</div>
-  <div class="card-last-updated" ></div>
-  <div class="location">{{forecast.channel.location.city}}, {{forecast.channel.location.region}}, {{forecast.channel.location.country}}</div>
-  <div class="date">{{forecast.channel.item.condition.date}}</div>
-  <div class="description">{{forecast.channel.item.condition.text}}</div>
+
+  <div class="info">
+    <div class="infolist">
+      <div class="city-key" >{{forecast.key}}</div>
+      <div class="card-last-updated" ></div>
+      <div class="location">{{forecast.channel.location.city}}, {{forecast.channel.location.region}}, {{forecast.channel.location.country}}</div>
+      <div class="date">{{forecast.channel.item.condition.date}}</div>
+      <div class="description">{{forecast.channel.item.condition.text}}</div>
+    </div>
+    <div style="flex: 1 1 auto;"></div>
+    <button mat-icon-button (click)="deleteCard(forecast.key)" aria-label="Delete"><mat-icon>delete</mat-icon></button>
+  </div>
   <div class="current">
     <div class="visual">
       <div class="icon" [ngClass]="getIconClass(forecast.channel.item.condition.code)"></div>

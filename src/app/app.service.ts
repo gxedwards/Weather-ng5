@@ -12,10 +12,28 @@ export class AppService {
   constructor(private forecastService: ForecastService) {
   }
 
-  addForecast(key: string) {
+  addCard(key: string) {
     // grab the forecasts and push onto the selected cities.
     this.forecastService.getForecast(key).subscribe(forecast => {
       this.selectedCities.push(forecast);
+    });
+  }
+
+  updateCards() {
+    this.selectedCities.forEach( forecastItem => {
+      const key = forecastItem.key;
+      // grab the forecasts and push onto the selected cities.
+      this.forecastService.getForecast(key).subscribe(forecast => {
+        forecastItem = forecast;
+      });
+    });
+  }
+
+  deleteCard(key: string) {
+    this.selectedCities.forEach( (forecastItem, index, object) => {
+      if (forecastItem.key === key) {
+        object.splice(index, 1);
+      }
     });
   }
 

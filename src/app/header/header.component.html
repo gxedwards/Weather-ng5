@@ -1,6 +1,9 @@
 
 <mat-toolbar color="primary">
+
   <span>Weather App</span>
-  <button mat-icon-button (click)="refresh()" ><mat-icon>refresh</mat-icon></button>
-  <button mat-icon-button (click)="openDialog()"><i class="material-icons" >add</i></button>
+  <!-- This fills the remaining space, by using flexbox. Every toolbar row uses a flexbox row layout.-->
+  <span style="flex: 1 1 auto;"></span>
+  <button mat-icon-button (click)="refresh()" aria-label="Refresh"><mat-icon>refresh</mat-icon></button>
+  <button mat-icon-button (click)="openDialog()" aria-label="Add"><i class="material-icons" >add</i></button>
 </mat-toolbar>

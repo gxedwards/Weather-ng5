@@ -11,17 +11,19 @@ export class ForecastService {
 
   constructor(private http: HttpClient) { }
 
-  getForecastDummy(key: string): Observable<Forecast> {
+  getForecastDummy(woeid: string): Observable<Forecast> {
     return of(DEFAULT_FORECAST);
   }
 
-  getForecast(key: string): Observable<Forecast> {
-    const statement = 'select * from weather.forecast where woeid=' + key;
+  getForecast(woeid: string): Observable<Forecast> {
+    const statement = 'select * from weather.forecast where woeid=' + woeid;
     const url = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' +
       statement;
     return this.http.get<YahooResponse>(url).map(
       result => {
-        return result.query.results;
+        const forecast =  result.query.results;
+        forecast.key = woeid;
+        return forecast;
       } );
   }
 }

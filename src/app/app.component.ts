@@ -18,12 +18,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
 
-    this.addForecast('2459115');
+    this.addCard('2459115');
 
   }
 
-  addForecast(key: string) {
-    this.appService.addForecast(key);
+  addCard(key: string) {
+    this.appService.addCard(key);
   }
 
 }
