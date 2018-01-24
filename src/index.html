@@ -6,23 +6,83 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/favicons/favicon.ico">
-
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Angular 5 Weather PWA</title>
 
-  <!-- TODO add manifest here -->
-  <!-- Add to home screen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Weather PWA">
-  <meta name="msapplication-TileImage" content="assets/icons/icon-144x144.png">
-  <meta name="msapplication-TileColor" content="#2F3BA2">
-  <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
-  <link rel="manifest" href="assets/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons2/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons2/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons2/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicons2/manifest.json">
+  <link rel="mask-icon" href="assets/favicons2/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+
+    .splash {
+      opacity: 0;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      color: #272c33;
+      padding-top: 25vh;
+      text-align: center;
+      z-index: -1;
+      font-family: monospace;
+    }
+    app-root:empty + .splash {
+      opacity: 1;
+      z-index: 100;
+    }
+    .splash h1 {
+      margin-bottom: 50px;
+    }
+
+
+    #loading {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      -webkit-animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { -webkit-transform: rotate(360deg); }
+    }
+    @-webkit-keyframes spin {
+      to { -webkit-transform: rotate(360deg); }
+    }
+  </style>
+
+
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <nav
+      style="background-color: #673ab7; height: 56px; width: 100%">
+    </nav>
+    <div id="loading"></div>
+  </app-root>
+
+  <!-- This is to use while Angular is loading -->
+  <!-- Concept taken from https://angularfirebase.com/lessons/hnpwa-angular-5-progressive-web-app-service-worker-tutorial/#manifest-json -->
+  <!-- Uses CSS to create to show the splash screen until angular is loaded ( something is in app-root basically ) -->
+
+  <div class="splash"  id="content">
+    <img src="assets/favicons2/android-chrome-192x192.png" width="192px" alt="Weather App NG5 Logo">
+    <h1>Weather App NG5</h1>
+  </div>
+
+
+  <!-- fallback if JavaScript is disabled -->
+  <noscript>
+    <p>
+      Sorry, JavaScript must be enabled to use this app.
+    </p>
+  </noscript>
 </body>
 </html>

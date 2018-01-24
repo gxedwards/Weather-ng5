@@ -13,8 +13,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
         </mat-select>
       </mat-dialog-content>
       <mat-dialog-actions>
-        <button mat-button (click)="addCity()" color="primary">Add</button>
-        <button mat-button type="button" (click)="dialogRef.close()">Cancel</button>
+        <button mat-button (click)="add()" color="primary">Add</button>
+        <button mat-button type="button" (click)="cancel()">Cancel</button>
       </mat-dialog-actions>
   `
 })
@@ -34,7 +34,6 @@ export class DialogComponent implements OnInit {
     {value : '2490383', name: 'Seattle, WA'}
   ];
 
-
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogComponent>,
@@ -44,8 +43,10 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  addCity() {
+  cancel() {
+    this.dialogRef.close();
+  }
+  add() {
     this.onAdd.emit(this.selectedCity);
     this.dialogRef.close(this.selectedCity);
   }

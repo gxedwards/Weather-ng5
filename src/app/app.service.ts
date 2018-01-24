@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ForecastService} from './forecast.service';
+import {AsyncLocalStorage} from 'angular-async-local-storage';
 
 /**
  * Service that allows common items to be shared.
@@ -9,13 +10,14 @@ export class AppService {
 
   public selectedCities = [];
 
-  constructor(private forecastService: ForecastService) {
+  constructor(private forecastService: ForecastService, private localStorage: AsyncLocalStorage) {
   }
 
   addCard(key: string) {
     // grab the forecasts and push onto the selected cities.
     this.forecastService.getForecast(key).subscribe(forecast => {
       this.selectedCities.push(forecast);
+      this.saveCards();
     });
   }
 
@@ -27,6 +29,7 @@ export class AppService {
         forecastItem = forecast;
       });
     });
+    this.saveCards();
   }
 
   deleteCard(key: string) {
@@ -35,6 +38,11 @@ export class AppService {
         object.splice(index, 1);
       }
     });
+    this.saveCards();
+  }
+
+  private saveCards() {
+    this.localStorage.setItem('cards', this.selectedCities).subscribe(() => {});
   }
 
 }
